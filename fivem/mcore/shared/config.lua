@@ -1,8 +1,8 @@
 Config = {
-     lan = "en",
+     lan               = "en",
      PedRenderDistance = 80.0,
-     target = true,
-     eventPrefix = "mhScripts"
+     target            = true,
+     eventPrefix       = "mhScripts"
 }
 
 Config.MHAdminSystem = GetResourceState("mate-admin") == "started"

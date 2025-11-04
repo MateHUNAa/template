@@ -44,7 +44,7 @@ Functions = {
      end),
      ---@param identifier string|number
      ---@return boolean,number|nil
-     GetPlayerIDByIdentifier = (function(identifier)
+     GetPlayerServerIdByIdentifier = (function(identifier)
           local found, type, id = ParseIdentifier(identifier)
           if not found then return false end
 
@@ -70,7 +70,7 @@ Functions = {
      end),
      ---@param PlayerId number
      ---@return boolean
-     IsAdmin = (function(PlayerId)
+     IsAdmin = (function(pid)
           if Config.MHAdminSystem then
                return exports["mate-admin"]:isAdmin(pid)
           else
@@ -150,21 +150,25 @@ Functions = {
 }
 
 
-function regServerNuiCallback(eventName, cb)
+function regServerNuiCallback(eventName, cb, showLog)
      local _eventName = ("%s:%s"):format(GetCurrentResourceName(), eventName)
 
      lib.callback.register(_eventName,
           (function(source, params, otherParams)
                local idf = GetPlayerIdentifierByType(source, "license"):sub(9)
 
-               print(("[%s] ->"):format(eventName), json.encode(params, { indent = true }))
-               print("\n\n\n")
-               
+               if showLog then
+                    print(("[%s] ->"):format(eventName), json.encode(params, { indent = true }))
+                    print("\n\n\n")
+               end
+
                local res = cb(source, idf, params, otherParams)
 
-               print(("[%s] response: \n"):format(eventName), res,
-                    json.encode(res, { indent = true }),
-                    "\n--------------------------------")
+               if showLog then
+                    print(("[%s] response: \n"):format(eventName), res,
+                         json.encode(res, { indent = true }),
+                         "\n--------------------------------")
+               end
 
                return res
           end))
@@ -184,4 +188,14 @@ function table.count(tbl)
      local c = 0
      for _, _ in pairs(tbl) do c += 1 end
      return c
+end
+
+function GetPlayerServerIdByIdentifier(identifier)
+     for _, playerId in ipairs(GetPlayers()) do
+          local playerIdentifier = GetPlayerIdentifierByType(playerId, "license"):sub(9)
+          if playerIdentifier == identifier then
+               return tonumber(playerId)
+          end
+     end
+     return nil
 end

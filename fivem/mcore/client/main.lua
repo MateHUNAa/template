@@ -1,5 +1,5 @@
-ESX   = exports['es_extended']:getSharedObject()
-mCore = exports["mCore"]:getSharedObj()
-
-lang = Loc[Config.lan]
+ESX       = exports['es_extended']:getSharedObject()
+mCore     = exports["mCore"]:getSharedObj()
 local inv = exports["ox_inventory"]
+Logger    = require("shared.Logger")
+lang      = Loc[Config.lan]
