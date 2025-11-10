@@ -23,7 +23,7 @@ client_scripts {
 }
 
 -- Libs
-shared_script '@mate-logger/shared/Logger.lua'
+shared_script '@mate-logger/init.lua'
 server_script "@oxmysql/lib/MySQL.lua"
 shared_script '@es_extended/imports.lua'
 shared_script '@ox_lib/init.lua'
