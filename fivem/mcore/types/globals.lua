@@ -4,6 +4,9 @@
 ---@alias Date string|number
 ---@alias playerId integer|number|string
 
+---@alias Vector3 {x: number, y: number, z: number}
+---@alias Vector4 {x: number, y: number, z: number, w: number}
+
 ---@class Editable
 Editable = {}
 
