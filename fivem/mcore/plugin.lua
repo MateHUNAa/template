@@ -21,7 +21,7 @@ function OnSetText(uri, text)
           diffs[count] = {
                start = 1,
                finish = 0,
-               text = '---@diagnostic disable: undefined-global\n'
+               text = '--- @diagnostic disable\n'
           }
      end
 

@@ -22,17 +22,20 @@ client_scripts {
     "client/main.lua",
 }
 
+-- Libs
+shared_script '@mate-logger/shared/Logger.lua'
 server_script "@oxmysql/lib/MySQL.lua"
 shared_script '@es_extended/imports.lua'
 shared_script '@ox_lib/init.lua'
 
+-- Deps
 dependency {
     'mCore',
     'oxmysql',
     'ox_lib'
 }
 
-
+-- Tebex
 escrow_ignore {
     'shared/config.lua',
     '**/*.editable.lua'
